@@ -2,13 +2,17 @@
 
 ## 1. Installations
 
-| Library    | Version | Link                                                 |
-| ---------- | ------- | ---------------------------------------------------- |
-| Python     | 3.9.0   | https://www.python.org/downloads/release/python-390/ |
-| virtualenv |         |                                                      |
-| SQLAlchemy | 1.4.39  |                                                      |
-| pandas     | 1.4.3   |                                                      |
-| numpy      | 1.23.1  |                                                      |
+| Library      | Version | Link                                                 |
+| ------------ | ------- | ---------------------------------------------------- |
+| Python       | 3.9.0   | https://www.python.org/downloads/release/python-390/ |
+| virtualenv   |         |                                                      |
+| SQLAlchemy   | 1.4.39  |                                                      |
+| pandas       | 1.4.3   |                                                      |
+| numpy        | 1.23.1  |                                                      |
+| nltk         | 3.7     |                                                      |
+| scikit-learn | 1.1.1   |                                                      |
+| plotly       | 5.9.0   |                                                      |
+| Flask        | 2.1.3   |                                                      |
 
 ## 2. Project Motivation
 
