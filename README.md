@@ -20,6 +20,14 @@
 
 ## 4. How to Interact with your project
 
+### Run the app
+
+navigate to app directory and run
+
+```
+python .\run.py
+```
+
 ### Active the virtual environment
 
 To active the virtual environment use the follwoing command
