@@ -32,7 +32,7 @@ engine = create_engine('sqlite:///../data/drp.db')
 df = pd.read_sql_table('drp', engine)
 
 # load model
-model = joblib.load("../models/your_model_name.pkl")
+model = joblib.load("../models/classifier.pkl")
 
 
 # index webpage displays cool visuals and receives user input text for model

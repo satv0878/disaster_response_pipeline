@@ -46,6 +46,8 @@ deactive
 
 ### Preprocess data
 
+#### Create Database
+
 In the data folder raw data for creating the sqllite database can be found. In order to create the database you have to navigate to the folder and execute the process_data.py with follwoing arguments:
 
 - messages_filepath
@@ -54,6 +56,15 @@ In the data folder raw data for creating the sqllite database can be found. In o
 
 ```
 python .\process_data.py "disaster_messages.csv" "disaster_categories.csv" "sqlite:///drp.db"
+```
+
+#### Create Pickle File
+
+- database_filepath
+- model_filepath
+
+```
+python .\train_classifier.py "../data/drp.db" "classifier.pkl"
 ```
 
 ### Instructions:
