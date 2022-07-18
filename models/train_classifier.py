@@ -1,3 +1,4 @@
+import pickle
 import re
 import sys
 from nltk.corpus import stopwords
@@ -6,28 +7,33 @@ from nltk.tokenize import word_tokenize
 from sqlalchemy import create_engine
 import pandas as pd
 
-from sklearn.pipeline import Pipeline
+from sklearn.pipeline import FeatureUnion, Pipeline
 from sklearn.model_selection import GridSearchCV
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.multioutput import MultiOutputClassifier
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import AdaBoostClassifier, RandomForestClassifier
+from sklearn.utils import parallel_backend
 
 
 from sklearn.model_selection import train_test_split
 
 import nltk
 
-nltk.download(['punkt', 'wordnet', 'stopwords'])
+
+nltk.download(['punkt', 'wordnet', 'stopwords', 'omw-1.4'])
 lemmatizer = WordNetLemmatizer()
 
 
 def load_data(database_filepath):
     '''reads sqlite data from the database_filepath and loads it into an pandas dataframe'''
-    engine = create_engine(database_filepath)
+    engine = create_engine("sqlite:///"+database_filepath)
     df = pd.read_sql_table(
         'drp',
         con=engine)
-    return df
+    X = df.message
+    y = df[df.columns[4:]]
+    category_names = y.columns
+    return X, y, category_names
 
 
 def tokenize(text):
@@ -55,7 +61,7 @@ def build_model():
                   'clf__estimator__n_estimators': [10, 25],
                   'clf__estimator__min_samples_split': [2, 4]}
 
-    cv = GridSearchCV(pipeline, param_grid=parameters, n_jobs=4, verbose=2)
+    cv = GridSearchCV(pipeline, param_grid=parameters, n_jobs=-1, verbose=2)
 
     return cv
 
@@ -65,7 +71,11 @@ def evaluate_model(model, X_test, Y_test, category_names):
 
 
 def save_model(model, model_filepath):
-    pass
+    """
+    Save model to a pickle file
+    """
+    with open(model_filepath, 'wb') as file:
+        pickle.dump(model, file)
 
 
 def main():
@@ -76,17 +86,19 @@ def main():
         X_train, X_test, Y_train, Y_test = train_test_split(
             X, Y, test_size=0.2)
 
-        print('Building model...')
-        model = build_model()
+        with parallel_backend('multiprocessing'):
 
-        print('Training model...')
-        model.fit(X_train, Y_train)
+            print('Building model...')
+            model = build_model()
 
-        print('Evaluating model...')
-        evaluate_model(model, X_test, Y_test, category_names)
+            print('Training model...')
+            model.fit(X_train, Y_train)
 
-        print('Saving model...\n    MODEL: {}'.format(model_filepath))
-        save_model(model, model_filepath)
+            print('Evaluating model...')
+        # evaluate_model(model, X_test, Y_test, category_names)
+
+            print('Saving model...\n    MODEL: {}'.format(model_filepath))
+            save_model(model, model_filepath)
 
         print('Trained model saved!')
 
