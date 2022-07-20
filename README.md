@@ -16,6 +16,10 @@
 
 ## 2. Project Motivation
 
+This project process actual disaster messgas provided by a comapny called figure8. Response messages shall be categorized to the disaster category in order be able to react on messages sent during a disaster accordingly. That means when a disaster message is sent where a person asks for help because of a fire a only a medial emergency team is send. In order for a human to be able to initiate the appropiate help this project gives an exampole on how an ETL Pipline with NLP and ML can souport by pre-categorzing text messages.
+
+Therefore the messages have been tokeized, lemmatized, removed stopwords using nltk. In order to create a model the tokenized messages the messages are vectorized. Occurence of each word in a tokenized message is counted. In a next step a TFidf Trasformer is used to normalize the occurance of the words. Therefore, the occurences of the word in a message is devided by the occurences of the word in all messages.
+
 ## 3. File Descriptions
 
 ## 4. How to Interact with your project
