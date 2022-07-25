@@ -20,6 +20,17 @@ This project process actual disaster messgas provided by a comapny called figure
 
 Therefore the messages have been tokeized, lemmatized, removed stopwords using nltk. In order to create a model the tokenized messages the messages are vectorized. Occurence of each word in a tokenized message is counted. In a next step a TFidf Trasformer is used to normalize the occurance of the words. Therefore, the occurences of the word in a message is devided by the occurences of the word in all messages.
 
+The Project follows the ETL Process. In the first step the data is being extracted from csv files, cleaned and stored in a sqlite database. In the next process stept the model is created. Based on the sqlite database the data is split in to the test and the train datasets.
+
+Here the variables, which should be predicted are the desaster categories. The messages shall be categorized and serve as predictor variables. Whatsoever the raw messages cannot be used for predition there for they have to be preprocessed using a NLP pipeline:
+
+1. Whitesspaces, dots are being removed as well as all characters are trasformed to lowercases characters.
+2. The sentences are tokenized.
+3. Stopwords are being removed.
+4. Words are transformed to its stem version using lemmatization.
+
+The tokenized messages are then used to build a model. Thereofore the messages are vectorized and normalized based on the occurance of the words in all messages using TFIDF.
+
 ## 3. File Descriptions
 
 ## 4. How to Interact with your project

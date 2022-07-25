@@ -1,9 +1,13 @@
+'''
+Train Classfier loads the data from the database file and tokenizes them. Model is build using cross validation. Finally the model is being saved to a pickle File.  
+'''
 import pickle
 import re
 import sys
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
+from sklearn.metrics import classification_report
 from sqlalchemy import create_engine
 import pandas as pd
 
@@ -50,6 +54,7 @@ def tokenize(text):
 
 
 def build_model():
+    '''builds the pipeline and optimizes the hyperparamater'''
 
     pipeline = Pipeline([
         ('vect', CountVectorizer(tokenizer=tokenize)),
@@ -67,7 +72,11 @@ def build_model():
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
-    pass
+    '''evaluates the model and prints a classiifcation report'''
+
+    y_pred = model.predict(X_test)
+    report = classification_report(Y_test, y_pred, target_names=category_names)
+    print(report)
 
 
 def save_model(model, model_filepath):
@@ -95,7 +104,7 @@ def main():
             model.fit(X_train, Y_train)
 
             print('Evaluating model...')
-        # evaluate_model(model, X_test, Y_test, category_names)
+            evaluate_model(model, X_test, Y_test, category_names)
 
             print('Saving model...\n    MODEL: {}'.format(model_filepath))
             save_model(model, model_filepath)

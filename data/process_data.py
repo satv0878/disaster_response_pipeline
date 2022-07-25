@@ -1,3 +1,4 @@
+'''Process data reads the data from a csv file, clean them and wirtes them to a sqlite database.'''
 
 import sys
 from sqlalchemy import create_engine
