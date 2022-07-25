@@ -24,7 +24,7 @@ The Project follows the ETL Process. In the first step the data is being extract
 
 Here the variables, which should be predicted are the desaster categories. The messages shall be categorized and serve as predictor variables. Whatsoever the raw messages cannot be used for predition there for they have to be preprocessed using a NLP pipeline:
 
-1. Whitesspaces, dots are being removed as well as all characters are trasformed to lowercases characters.
+1. Whitespaces, dots are being removed as well as all characters are trasformed to lowercases characters.
 2. The sentences are tokenized.
 3. Stopwords are being removed.
 4. Words are transformed to its stem version using lemmatization.
@@ -32,6 +32,23 @@ Here the variables, which should be predicted are the desaster categories. The m
 The tokenized messages are then used to build a model. Thereofore the messages are vectorized and normalized based on the occurance of the words in all messages using TFIDF.
 
 ## 3. File Descriptions
+
+- **train_classifiers.py:** Train Classfier loads the data from the database file and tokenizes them. Model is build using cross validation. Finally the model is being saved to a pickle File.
+
+- **process_data.py:** Process data reads the data from a csv file, clean them and wirtes them to a sqlite database.
+
+- **run.py:**
+
+- **go.html:**
+
+- **master.html:**
+
+- **disaster_categries.csv:**
+- **disaster_messages.csv:**
+
+- **drp.db:**
+
+- **classifier.pkl:**
 
 ## 4. How to Interact with your project
 
@@ -81,18 +98,3 @@ python .\process_data.py "disaster_messages.csv" "disaster_categories.csv" "sqli
 ```
 python .\train_classifier.py "../data/drp.db" "classifier.pkl"
 ```
-
-### Instructions:
-
-1. Run the following commands in the project's root directory to set up your database and model.
-
-   - To run ETL pipeline that cleans data and stores in database
-     `python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db`
-   - To run ML pipeline that trains classifier and saves
-     `python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl`
-
-2. Go to `app` directory: `cd app`
-
-3. Run your web app: `python run.py`
-
-4. Click the `PREVIEW` button to open the homepage
