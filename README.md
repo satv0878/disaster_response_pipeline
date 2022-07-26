@@ -5,14 +5,13 @@
 | Library      | Version | Link                                                 |
 | ------------ | ------- | ---------------------------------------------------- |
 | Python       | 3.9.0   | https://www.python.org/downloads/release/python-390/ |
-| virtualenv   |         |                                                      |
-| SQLAlchemy   | 1.4.39  |                                                      |
-| pandas       | 1.4.3   |                                                      |
-| numpy        | 1.23.1  |                                                      |
-| nltk         | 3.7     |                                                      |
-| scikit-learn | 1.1.1   |                                                      |
-| plotly       | 5.9.0   |                                                      |
-| Flask        | 2.1.3   |                                                      |
+| SQLAlchemy   | 1.4.39  | https://www.sqlalchemy.org/                          |
+| pandas       | 1.4.3   | https://pandas.pydata.org/                           |
+| numpy        | 1.23.1  | https://numpy.org/                                   |
+| nltk         | 3.7     | https://www.nltk.org/                                |
+| scikit-learn | 1.1.1   | https://scikit-learn.org/stable/                     |
+| plotly       | 5.9.0   | https://plotly.com/                                  |
+| Flask        | 2.1.3   | https://flask.palletsprojects.com/en/2.1.x/          |
 
 ## 2. Project Motivation
 
@@ -37,18 +36,18 @@ The tokenized messages are then used to build a model. Thereofore the messages a
 
 - **process_data.py:** Process data reads the data from a csv file, clean them and wirtes them to a sqlite database.
 
-- **run.py:**
+- **run.py:** Flask app which load the data from the db as well as the model from the pickle File. Grpah are created and dosplays on the index page.
 
-- **go.html:**
+- **go.html:** Contains the html after a query for categorizing a messages has been executed
 
-- **master.html:**
+- **master.html:** Contains the html for theindex page. such as nav bar and graphs
 
-- **disaster_categries.csv:**
-- **disaster_messages.csv:**
+- **disaster_categries.csv:** raw data file for catergories
+- **disaster_messages.csv:** raw data file with corresponding messages
 
-- **drp.db:**
+- **drp.db:** Created sqlite database file
 
-- **classifier.pkl:**
+- **classifier.pkl:** Calculated model exported and pickel file
 
 ## 4. How to Interact with your project
 
@@ -59,6 +58,8 @@ navigate to app directory and run
 ```
 python .\run.py
 ```
+
+### Add virtual environment
 
 ### Active the virtual environment
 
